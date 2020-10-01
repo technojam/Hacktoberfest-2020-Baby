@@ -15,7 +15,7 @@
   ![](https://i.ibb.co/0jHpjBP/hacktoberfest.jpg)
 <br></br>
 ##
-  ### 3. Then go to https://github.com/3NCRY9T3R/H4CKT0B3RF3ST-2020 and click on *"star"*🌟 and *"fork"*🍴.
+  ### 3. Then go to https://github.com/technojam/Hacktoberfest-2020-Baby and click on *"star"*🌟 and *"fork"*🍴.
   ![](https://i.ibb.co/R4p91T9/fork1.jpg)
 <br></br>
 ##
