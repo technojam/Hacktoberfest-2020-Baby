@@ -1,7 +1,7 @@
 #include <stdio.h>
-float temp_f;     /* degrees fahrenheit */
-float temp_c;     /* degrees centigrade */
-char line_text[50];        /* a line of input */
+float temp_f;     
+float temp_c;     
+char line_text[50];        
 
 int main() {
 	printf("Input a temperature (in Centigrade): ");
