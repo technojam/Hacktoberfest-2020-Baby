@@ -1,0 +1,22 @@
+import java.util.*;
+class toggle {
+public static void main(String args[])
+{
+String newWord= "";
+Scanner sc = new Scanner(System.in);
+System.out.println("Input a word:");
+String str = sc.next();
+for(int i=0; i<str.length();i++)
+{
+char ch = str.charAt(i);
+if(Character.isUpperCase(ch))
+  ch = Character.toLowerCase(ch);
+if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+{
+ch++;
+}
+newWord = newWord +ch;
+}
+System.out.println("The new word =" + newWord);
+}
+}
