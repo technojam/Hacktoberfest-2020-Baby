@@ -1,4 +1,4 @@
-public class buubleSort {
+public class bubbleSort {
    public static void main(String []args) {
 	String str[] = { "Ajeet", "Steve", "Rick", "Becky", "Mohan"};
 	String temp;
