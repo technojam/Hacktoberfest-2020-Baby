@@ -2,7 +2,10 @@
 #include <bits/stdc++.h> 
 using namespace std; 
 
-// A utility function to swap two elements 
+// A utility function to swap two elements
+cout<<"\n\n";
+cout<<"\t\t";
+cout<<"This is the programe fo doing selection";
 void swap(int* a, int* b) 
 { 
 	int t = *a; 
