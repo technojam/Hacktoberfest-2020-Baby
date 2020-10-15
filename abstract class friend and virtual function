@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+class base{
+public:
+   virtual void mTable()=0;
+};
+class derived:public base{
+public:
+  int n;
+  void input(){cin>>n;}
+  void mTable(){
+    for(int i=1;i<=4;i++)
+    cout<<n*i<<" ";
+    cout<<n*5;
+  }
+};
+
+int main() {
+	base *b;
+  derived d;
+  b=&d;
+  d.input();
+  b->mTable();
+	return 0;
+}
