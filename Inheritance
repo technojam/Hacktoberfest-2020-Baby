@@ -1,0 +1,22 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+class Area{
+  public:
+  float getArea(float l,float h){return l*h;}
+};
+class Perimeter{
+public:
+  float getPerimeter(float l,float h){return 2*(l+h);}
+};
+class Rectangle:public Area,public Perimeter{
+
+};
+int main() {
+Rectangle d;
+  double a,b;
+  cin>>a>>b;
+  cout<<d.getArea(a,b)<<endl;
+  cout<<fixed<<setprecision(2)<<d.getPerimeter(a,b);
+	return 0;
+}
