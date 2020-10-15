@@ -1,5 +1,7 @@
 /* C++ implementation of QuickSort */
 #include <bits/stdc++.h> 
+#include <string>
+#define vi  vector<int>
 using namespace std; 
 
 // A utility function to swap two elements 
