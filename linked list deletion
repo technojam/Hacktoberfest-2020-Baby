@@ -1,0 +1,78 @@
+#include<iostream>
+#include<malloc.h>
+using namespace std;
+void Create();
+struct Node
+{
+  int data;
+  struct Node *link;
+}*start;
+int main()
+{
+  int n,i,m;
+  int flag=0;
+  start=NULL;
+  cin>>n;
+  for(i=0;i<n;i++)
+  {
+    Create();
+  }
+  cin>>m;
+  struct Node *t;
+  t=start;
+  while(t!=NULL)
+  {
+    if(t->data==m)
+    {
+      flag=1;
+      break;
+    }
+    t=t->link;
+  }
+  if(flag==1)
+  {
+    cout<<"Linked List : ";
+   t=start;
+  while(t!=NULL)
+  {
+    if(t->data==m)
+    {
+      cout<<"->"<<t->data;
+      t=t->link;
+      break;
+    }
+    cout<<"->"<<t->data;
+ t=t->link;
+  }
+  }
+  else
+  {
+    cout<<"Invalid Node! \n";
+   cout<<"Linked List : ";
+   t=start;
+  while(t!=NULL)
+  {
+    cout<<"->"<<t->data;
+ t=t->link;
+  }
+  }
+  return 0;
+}
+void Create()
+{
+  struct Node *temp,*t;
+  temp=(struct Node*) malloc(sizeof(struct Node));
+  cin>>temp->data;
+  temp->link=NULL;
+  if(start==NULL)
+  {
+    start=temp;
+  }
+  else
+  {
+    t=start;
+    while(t->link!=NULL)
+     t=t->link;
+    t->link=temp;
+  }
+}
