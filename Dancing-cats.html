@@ -1,0 +1,23 @@
+<html>
+<body>
+<div> 
+<h1>Gatos Love To Dance</h1>
+<h2>Click the kitty to invite his friends!</h2>
+</div>
+<div id='div1'>
+  <img src='https://media.giphy.com/media/kWqTfdz5RJBRe/giphy.gif' style="width:100px">
+</div>
+<div id='div2'></div>
+</body>
+</html>
+
+
+<script>
+$('#div1').click(function() {
+  $('img').clone().appendTo('#div2')
+  $('img').effect('bounce') 
+});
+</script>
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
