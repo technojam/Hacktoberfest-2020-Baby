@@ -10,7 +10,7 @@ int main()
     scanf("%d",&r2);
     printf("enter the height of hollow cylinder :",h)
     scanf("%d",&h);
-    tsa = 6.282 * (r1 + r2) * (h + r1 +r2);
+    tsa = 6.282 * (r1 + r2) * (r2 - r1 + h);
     printf("Total surface area of hollow cylinder --->%f",tsa);
     return 0;
 }
