@@ -1,0 +1,370 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Array{
+	
+	int *A;
+	int length;
+	int size;
+};
+
+void swap(int *a, int *b){
+	
+	int temp= *a;
+	*a= *b;
+	*b= temp;
+}
+
+void Display(struct Array arr){
+	
+	int i;
+	printf("\nThe elements are :\n");
+	for(i= 0; i<arr.length; i++)
+		printf("%d\t",arr.A[i]);
+}
+
+void Add(struct Array *arr, int x){
+	
+	if(arr->length< arr->size)
+		arr->A[arr->length++] = x;
+}
+
+void Insert(struct Array *arr, int index, int x){
+	
+	int i;
+	if(index>= 0 && index<= arr->length){
+		
+		for(i= arr->length; i>index; i--)
+			arr->A[i]= arr->A[i-1];
+		arr->A[index]= x;
+		arr->length++;
+	}
+}
+
+int Delete(struct Array *arr, int index){
+	
+	int i, x;
+	if(index>=0 && index< arr->length){
+		
+		x= arr->A[index];
+		for(i= index; i< arr->length-1; i++)
+			arr->A[i]= arr->A[i+1];
+		arr->length--;
+		return x;
+	}
+	
+	return -1;
+}
+
+int LinearSearch(struct Array *arr, int key){
+	
+	int i;
+	for(i= 0; i<arr->length; i++){
+		
+		if(key== arr->A[i]){
+			swap(&arr->A[i], &arr->A[i-1]);       //Transposition
+//			swap(&arr->A[i], &arr->A[0]);         //Move to Front
+			return i;
+		}
+	}
+	return -1;
+}
+
+int binarySearch(struct Array arr, int l, int r, int key){
+	
+	if(l<=r){
+	
+		int mid= (l+r)/2;
+		if(arr.A[mid]== key)
+			return mid;
+		else if(arr.A[mid]>key)
+			return binarySearch(arr, l, mid-1, key);
+		else
+			return binarySearch(arr, mid+1, r, key);	
+	}
+	return -1;
+}
+
+int Get(struct Array arr, int index){
+	
+	if(index>=0 && index<arr.length)
+		return arr.A[index];
+		
+	return -1;
+}
+
+void Set(struct Array *arr, int index, int x){
+	
+	if(index>=0 && index<arr->length){
+		
+		arr->A[index]= x;
+	}
+}
+
+void Reverse(struct Array *arr){
+	
+	int i, j;
+	for(i= 0, j= arr->length-1; i<j; i++, j--)
+		swap(&arr->A[i], &arr->A[j]);
+}
+
+void InsertInSortedArray(struct Array *arr, int x){
+	
+	int i= arr->length-1;
+	while(arr->A[i]>x){
+		
+		arr->A[i+1]= arr->A[i];
+		i--;
+	}
+	arr->A[i+1]= x;
+	arr->length++;
+}
+
+int isSorted(struct Array arr){
+	
+	int i;
+	for(i=0; i< arr.length-1; i++){
+		
+		if(arr.A[i]> arr.A[i+1])
+			return 0;
+	}
+	return 1;
+}
+
+void sortingPositiveNegative(struct Array *arr){
+	
+	int i= 0, j= arr->length-1;
+	
+	while(i<j){
+		
+		while(arr->A[i]<0)
+			i++;
+		while(arr->A[j]>=0)
+			j--;
+		if(i<j)
+			swap(&arr->A[i], &arr->A[j]);
+	}
+}
+
+struct Array* Merging(struct Array *arr1, struct Array *arr2){
+	
+	struct Array *arr3 = (struct Array*)malloc(sizeof(struct Array));
+	
+	int i=0, j=0, k=0;
+	
+	while(i< arr1->length && j< arr2->length){
+		
+		if(arr1->A[i]< arr2->A[j])
+			arr3->A[k++]= arr1->A[i++];
+		else
+			arr3->A[k++]= arr2->A[j++];
+	}
+	
+	for(;i<arr1->length;i++)
+		arr3->A[k++]= arr1->A[i];
+	for(;j<arr2->length;j++)
+		arr3->A[k++]= arr2->A[j];
+		
+	arr3->length= k;
+	arr3->size= arr2->size + arr2->size;
+		
+	return arr3;
+}
+
+struct Array* unionOfSets(struct Array *arr1, struct Array *arr2){
+	
+	struct Array *arr3 = (struct Array*)malloc(sizeof(struct Array));
+	
+	int i=0, j=0, k=0;
+	
+	while(i< arr1->length && j< arr2->length){
+		
+		if(arr1->A[i]< arr2->A[j])
+			arr3->A[k++]= arr1->A[i++];
+			
+		else if(arr1->A[i]> arr2->A[j])
+			arr3->A[k++]= arr2->A[j++];
+			
+		else{
+			arr3->A[k++]= arr2->A[j++];
+			i++;
+		}
+	}
+	
+	for(;i<arr1->length;i++)
+		arr3->A[k++]= arr1->A[i];
+	for(;j<arr2->length;j++)
+		arr3->A[k++]= arr2->A[j];
+		
+	arr3->length= k;
+	arr3->size= arr2->size + arr2->size;
+		
+	return arr3;
+}
+
+struct Array* intersectionOfSets(struct Array *arr1, struct Array *arr2){
+	
+	struct Array *arr3 = (struct Array*)malloc(sizeof(struct Array));
+	
+	int i=0, j=0, k=0;
+	
+	while(i< arr1->length && j< arr2->length){
+		
+		if(arr1->A[i]< arr2->A[j])
+			i++;
+			
+		else if(arr1->A[i]> arr2->A[j])
+			j++;
+			
+		else{
+			arr3->A[k++]= arr2->A[j++];
+			i++;
+		}
+	}
+		
+	arr3->length= k;
+	arr3->size= arr2->size + arr2->size;
+		
+	return arr3;
+}
+
+struct Array* subtractionOfSets(struct Array *arr1, struct Array *arr2){
+
+	struct Array *arr3 = (struct Array*)malloc(sizeof(struct Array));
+	
+	int i=0, j=0, k=0;
+	
+	while(i< arr1->length && j< arr2->length){
+		
+		if(arr1->A[i]< arr2->A[j])
+			arr3->A[k++]= arr1->A[i++];
+			
+		else if(arr1->A[i]> arr2->A[j])
+			j++;
+			
+		else{
+			j++;
+			i++;
+		}
+	}
+	
+	for(;i<arr1->length;i++)
+		arr3->A[k++]= arr1->A[i];
+		
+	arr3->length= k;
+	arr3->size= arr2->size + arr2->size;
+		
+	return arr3;
+}
+
+int main(){
+	
+	struct Array arr, arr2;
+	struct Array *arr3;
+	int n, i, x, in;
+	
+	printf("Enter the size of Array :\n");
+	scanf("%d", &arr.size);
+	
+	printf("\nEnter the no. of elements you want to enter :\n");
+	scanf("%d",&n);
+	
+	arr.A = (int *)malloc(arr.size*sizeof(int));
+	printf("\nEnter the elements :\n");
+	
+	for(i= 0; i<n; i++)
+		scanf("%d", &arr.A[i]);
+		
+	arr.length = n;
+	
+	Display(arr);
+	
+//	printf("\nEnter the element you want to add next :\n");
+//	scanf("%d", &x);
+//	
+//	Add(&arr, x);
+//	Display(arr);
+//	
+//	printf("\nEnter the element you want to insert and index :\n");
+//	scanf("%d %d",&x, &in);
+//	
+//	Insert(&arr, in, x);
+//	Display(arr);
+//	
+//	printf("\nEnter the index you want delete :\n");
+//	scanf("%d", &in);
+//	
+//	printf("\n%d is deleted from index : %d",Delete(&arr, in), in);
+//	Display(arr);
+	
+//	printf("\nEnter the number you want to search :\n");
+//	scanf("%d", &x);
+	
+//	in= LinearSearch(&arr, x);
+//	if(in== -1)
+//		printf("\n%d is not present in the array.",x);
+//	else
+//		printf("\n%d is present in the index %d", x, in);
+//	Display(arr);
+	
+//	in= binarySearch(arr, 0, arr.length, x);
+//	if(in== -1)
+//		printf("\n%d is not present in the array.",x);
+//	else
+//		printf("\n%d is present in the index %d", x, in);
+	
+//	printf("\nEnter the index :\n");
+//	scanf("%d", &in);
+//	
+//	x= Get(arr, in);
+//	if(x== -1)
+//		printf("\nIndex %d is not present in the array.",in);
+//	else
+//		printf("\n%d is present in the index %d", x, in);
+
+//	printf("\nEnter the index and the value you want to update :\n");
+//	scanf("%d %d", &in, &x);
+//	
+//	Set(&arr, in, x);
+//	Display(arr);
+
+//	Reverse(&arr);
+//	Display(arr);
+
+//	printf("\nEnter the element to insert in the sorted array :\n");
+//	scanf("%d", &x);
+//	InsertInSortedArray(&arr, x);
+//	Display(arr);
+
+//	if(isSorted(arr
+
+//	sortingPositiveNegative(&arr);
+//	Display(arr);
+	
+	printf("\nEnter the size of 2nd Array :\n");
+	scanf("%d", &arr2.size);
+	
+	printf("\nEnter the no. of elements you want to enter :\n");
+	scanf("%d",&n);
+	
+	arr2.A = (int *)malloc(arr2.size*sizeof(int));
+	printf("\nEnter the elements :\n");
+	
+	for(i= 0; i<n; i++)
+		scanf("%d", &arr2.A[i]);
+		
+	arr2.length = n;
+	Display(arr2);
+	
+//	arr3= Merging(&arr, &arr2);
+//	Display(*arr3);
+	
+//	arr3= unionOfSets(&arr, &arr2);
+//	Display(*arr3);
+	
+//	arr3= intersectionOfSets(&arr, &arr2);
+//	Display(*arr3);
+	
+	arr3= subtractionOfSets(&arr, &arr2);
+	Display(*arr3);
+}
