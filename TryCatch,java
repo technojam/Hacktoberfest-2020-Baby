@@ -1,0 +1,15 @@
+public class TryCatch {
+    public static void main(String args[]){
+        try{
+            int a[]= new int[7];
+            a[5]=30/0;
+            System.out.println("First print statement in try block");
+        }
+        catch(ArithmeticException e){
+            System.out.println("Arithmethic Exception");
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("ArrayIndexOutOfBoundException");
+        }
+    }
+}
