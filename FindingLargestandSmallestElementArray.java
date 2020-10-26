@@ -12,7 +12,7 @@ public class SortExample
         {
             arr[j]=sc.nextInt();} 
         Arrays.sort(arr); // Sorts arr[] in descending order
-          System.out.println("Largest Element:"+" "+arr[0]);
-          System.out.println("Smallest Element:"+" "+arr[n-1]);
+          System.out.println("Largest Element:"+" "+arr[n-1]);
+          System.out.println("Smallest Element:"+" "+arr[0]);
         }
     } 
