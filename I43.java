@@ -1,4 +1,4 @@
-public class Mains
+public class I43
 {
 	public static void main(String[] args) {
 		a="learn";
